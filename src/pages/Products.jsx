@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Tune, FileDownload, FileUpload, DeleteOutline, Add } from "@mui/icons-material";
 import { Checkbox, Table } from "@mui/joy";
-import { TableCell, TableHead, TableRow,  TableContainer } from "@mui/material";
+import { TableCell, TableHead, TableRow,  TableContainer ,TablePagination} from "@mui/material";
 import ProductTable from "../components/table/ProductTable";
+import AddProductDetails from "../components/modal/AddProductModal";
 
 function Products() {
   // useEffect(async()=>{
@@ -15,6 +16,19 @@ function Products() {
   //       price: sortedField,
   //     })
   // },[])
+  const [openAddProduct, setOpenAddProduct] = useState(false);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   const products = [
     {
       id:1,
@@ -94,7 +108,7 @@ function Products() {
               <DeleteOutline />
               Delete
             </button>
-            <button className="bg-green-400 flex items-center px-3 py-2 text-white font-semibold rounded-e-lg hover:cursor-pointer">
+            <button onClick={()=>{setOpenAddProduct(true)}} className="bg-green-400 flex items-center px-3 py-2 text-white font-semibold rounded-e-lg hover:cursor-pointer">
               <Add />
               Add Product
             </button>
@@ -117,16 +131,25 @@ function Products() {
                   <TableCell className="w-40 text-white">Manufacturing Date</TableCell>
                   <TableCell className="w-40 text-white">Price</TableCell>
                   <TableCell className="w-40 text-white">Status</TableCell>
-                  <TableCell className="text-center w-40 text-white">Details</TableCell>
                   <TableCell className="text-center w-40 text-white">Published</TableCell>
                   <TableCell className="text-right w-40 text-white">Actions</TableCell>
                 </TableRow>
               </TableHead>
-              <ProductTable products={products} />
+              <ProductTable products={products.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}/>
             </Table>
           </TableContainer>
+          <TablePagination
+            rowsPerPageOptions={[10, 20,30]}
+            component="div"
+            count={products.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
         </div>
       </div>
+      <AddProductDetails isOpen={openAddProduct} onClose={()=>setOpenAddProduct(false)}/>
     </div>
   );
 }

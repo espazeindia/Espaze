@@ -1,8 +1,8 @@
 import { Checkbox } from "@mui/joy";
 import { TableBody, TableCell, TableRow } from "@mui/material";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import ModalComponent from "../modal/Modal";
+import ModalComponent from "../modal/ViewProductModal";
+import ZoomInIcon from '@mui/icons-material/ZoomIn';
 
 function ProductTable({ products }) {
   const [openViewProduct, setViewProduct] = useState(false);
@@ -94,22 +94,21 @@ function ProductTable({ products }) {
                 </div>
               )}
             </TableCell>
-            <TableCell>
-              <div
-                onClick={() => {
-                  handleProductView(product.id);
-                }}
-              >
-                Zoom
-              </div>
-            </TableCell>
+            
             <TableCell className="text-center">
               toggle
               {/* <ShowHideButton id={product._id} status={product.status} /> */}
               {/* {product.status} */}
             </TableCell>
-            <TableCell>
-              Edit
+            <TableCell className="flex">
+            <div className="inline"
+                onClick={() => {
+                  handleProductView(product.id);
+                }}
+              >
+                <ZoomInIcon/>
+              </div>
+              <div className="inline">Edit</div>
               {/* <EditDeleteButton
                 id={product._id}
                 product={product}
