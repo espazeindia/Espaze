@@ -14,7 +14,7 @@ const Layout = () => {
     <div className={`flex h-screen ${sideBarOpen && "overflow-hidden"}`}>
       {sideBarOpen && <Sidebar />}
 
-      <div className="w-[85vw]">
+      <div className="flex w-[85vw]">
           <Routes>
             {routes.map((route, i) => (
               route.component ? (
