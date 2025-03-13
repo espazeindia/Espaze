@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import Cookies from "js-cookie";
+import React, { lazy } from "react";
+import { ToastContainer } from "react-toastify";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+const Login = lazy(() => import("./pages/Login"));
+const SignUp = lazy(() => import("./pages/SignUp"));
+const ForgetPassword = lazy(() => import("./pages/ForgetPassword"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+function ProtectedRoute({ children }) {
+  const token = Cookies.get("adminInfo") ? JSON.parse(Cookies.get("adminInfo")) : null;
+  return token ? children : <Navigate to="/login" />;
 }
 
-export default App
+function PublicRoute({ children }) {
+  const token = Cookies.get("adminInfo") ? JSON.parse(Cookies.get("adminInfo")) : null;
+  return token ? <Navigate to="/" /> : children;
+}
+
+function App() {
+  return (
+    <>
+      <ToastContainer />
+      <Router>
+        <Routes>
+          {/* Public Routes (Redirect to Dashboard if already logged in) */}
+          <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+          <Route path="/signup" element={<PublicRoute><SignUp /></PublicRoute>} />
+          <Route path="/forgot-password" element={<PublicRoute><ForgetPassword /></PublicRoute>} />
+
+          {/* Protected Route (Only logged-in users can access Dashboard) */}
+          <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+
+          {/* Catch-all Route (Redirect unknown paths to login) */}
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      </Router>
+    </>
+  );
+}
+
+export default App;
