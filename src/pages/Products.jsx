@@ -1,18 +1,77 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Tune, FileDownload, FileUpload, DeleteOutline, Add } from "@mui/icons-material";
 import { Checkbox, Table } from "@mui/joy";
-import { TableCell, TableHead, TableRow, TableBody, TableContainer } from "@mui/material";
+import { TableCell, TableHead, TableRow,  TableContainer } from "@mui/material";
+import ProductTable from "../components/table/ProductTable";
 
 function Products() {
+  // useEffect(async()=>{
+  //   const { data, loading, error } =
+  //     await ProductServices.getAllProducts({
+  //       page: currentPage,
+  //       limit: limitData,
+  //       category: category,
+  //       title: searchText,
+  //       price: sortedField,
+  //     })
+  // },[])
+  const products = [
+    {
+      id:1,
+      name: "Apple",
+      category: "Fruits",
+      subCategory: "Fresh Fruits",
+      productCode: "APL123",
+      expiryDate: "2025-06-20",
+      quantity: 0,
+      manufacturingDate: "2025-03-01",
+      price: 100,
+      status: "Available",
+      details: "Red Apple, organic",
+      published: true,
+      actions: "Edit | Delete",
+    },
+    {
+      id:2,
+      name: "Milk",
+      category: "Dairy",
+      subCategory: "Milk Products",
+      productCode: "MLK456",
+      expiryDate: "2025-03-25",
+      quantity: 100,
+      manufacturingDate: "2025-03-10",
+      price: 50,
+      status: "Available",
+      details: "Full cream milk",
+      published: true,
+      actions: "Edit | Delete",
+    },
+    {
+      id:3,
+      name: "Bread",
+      category: "Bakery",
+      subCategory: "Baked Goods",
+      productCode: "BRD789",
+      expiryDate: "2025-03-15",
+      quantity: 30,
+      manufacturingDate: "2025-03-05",
+      price: 40,
+      status: "Out of Stock",
+      details: "Whole wheat bread",
+      published: false,
+      actions: "Edit | Delete",
+    },
+  ];
+
   return (
     <div className="w-full h-full p-5 bg-gray-100">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-semibold">Products</h1>
         <div className="flex">
-          <button className="bg-green-400 flex items-center px-6 py-2 text-white font-semibold rounded-s-lg">
+          <button className="bg-green-400 flex items-center px-6 py-2 text-white font-semibold rounded-s-lg hover:cursor-pointer">
             <FileDownload /> Import
           </button>
-          <button className="bg-gray-400 flex items-center px-6 py-2 text-white font-semibold rounded-e-lg">
+          <button className="bg-gray-400 flex items-center px-6 py-2 text-white font-semibold rounded-e-lg hover:cursor-pointer">
             <FileUpload />
             Export
           </button>
@@ -26,16 +85,16 @@ function Products() {
               className="bg-gray-100 px-4 py-2 rounded-full w-[55vw] text-black focus:outline-0 placeholder:text-xl"
               placeholder="Search Product"
             />
-            <button className="border flex items-center px-4 rounded-full ml-2 py-1">
+            <button className="border flex items-center px-4 rounded-full ml-2 py-1 hover:cursor-pointer">
               <Tune className="mr-2" /> Filters
             </button>
           </div>
           <div className="flex">
-            <button className="bg-red-400 flex items-center px-3 py-2 text-white font-semibold rounded-s-lg">
+            <button className="bg-red-400 flex items-center px-3 py-2 text-white font-semibold rounded-s-lg hover:cursor-pointer">
               <DeleteOutline />
               Delete
             </button>
-            <button className="bg-green-400 flex items-center px-3 py-2 text-white font-semibold rounded-e-lg">
+            <button className="bg-green-400 flex items-center px-3 py-2 text-white font-semibold rounded-e-lg hover:cursor-pointer">
               <Add />
               Add Product
             </button>
@@ -63,9 +122,7 @@ function Products() {
                   <TableCell className="text-right w-40 text-white">Actions</TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody className="bg-gray-700 text-white">
-                {/* Add table rows here */}
-              </TableBody>
+              <ProductTable products={products} />
             </Table>
           </TableContainer>
         </div>
