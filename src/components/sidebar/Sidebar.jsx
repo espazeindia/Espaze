@@ -13,7 +13,7 @@ function Sidebar() {
   }
 
   return (
-    <div className="bg-white w-[13vw] border-r p-5 flex flex-col justify-between ">
+    <div className="bg-white w-[15vw] border-r p-5 flex flex-col justify-between ">
       <div>
         <div className="text-2xl font-semibold">Espaze</div>
         <div className="space-y-1 mt-5">
