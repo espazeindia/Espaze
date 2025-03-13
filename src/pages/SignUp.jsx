@@ -47,8 +47,8 @@ function SignUp() {
   };
 
   return (
-    <div className="flex items-center min-h-screen p-6 bg-black">
-      <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden rounded-lg  bg-white/10 ">
+    <div className="flex items-center min-h-screen p-6 bg-gray-100">
+      <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden rounded-lg  bg-white shadow-xl ">
         <div className="flex flex-col overflow-y-auto md:flex-row">
           <div className="h-32 md:h-auto md:w-1/2">
             <img
@@ -61,11 +61,14 @@ function SignUp() {
 
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              <h1 className="mb-6 text-4xl font-semibold text-white text-center">Sign Up</h1>
+              <h1 className="mb-2 text-3xl font-semibold text-black text-center">Sign Up</h1>
+              <h2 className="text-center text-gray-500 mb-4">
+                Don't have an account? Create one.
+              </h2>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <FormControl size="lg" className="space-y-1">
-                  <label className="text-xl text-green-400 font-semibold">Name</label>
+                  <label className="text-lg text-black font-semibold">Name</label>
                   <Input
                     name="name"
                     value={formData.name}
@@ -77,7 +80,7 @@ function SignUp() {
                   />
                 </FormControl>
                 <FormControl size="lg" className="space-y-1">
-                  <label className="text-xl text-green-400 font-semibold">Email</label>
+                  <label className="text-lg text-black font-semibold">Email</label>
                   <Input
                     name="email"
                     value={formData.email}
@@ -89,7 +92,7 @@ function SignUp() {
                   />
                 </FormControl>
                 <FormControl size="lg" className="space-y-1">
-                  <label className="text-xl text-green-400 font-semibold">Password</label>
+                  <label className="text-lg text-black font-semibold">Password</label>
                   <Input
                     name="password"
                     value={formData.password}
@@ -102,7 +105,7 @@ function SignUp() {
                 </FormControl>
 
                 <FormControl size="lg" className="space-y-1">
-                  <label className="text-xl text-green-400 font-semibold">Role</label>
+                  <label className="text-lg text-black font-semibold">Role</label>
                   <Select
                     placeholder="Select Role"
                     onChange={handleRoleChange}
@@ -116,16 +119,16 @@ function SignUp() {
 
                 <button
                   type="submit"
-                  className="w-full bg-green-500 py-2 mt-3 rounded-lg font-semibold text-white hover:bg-green-600"
+                  className="w-full bg-[#ff9406] py-2 mt-3 rounded-lg text-lg font-semibold text-white hover:bg-[#ff9406]"
                 >
                   Register
                 </button>
               </form>
 
               {/* Links */}
-              <p className="mt-10">
+              <p className="mt-8">
                 <Link
-                  className="text-lg w-fit mx-auto font-medium text-green-500 block text-center  hover:underline"
+                  className="text-lg w-fit mx-auto font-medium text-[#ff9406] block text-center  hover:underline"
                   to="/login"
                 >
                   Already have an account? Login
