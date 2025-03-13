@@ -13,16 +13,16 @@ function Sidebar() {
   }
 
   return (
-    <div className="bg-white w-[13vw] border-r p-5 flex flex-col justify-between ">
+    <div className="bg-white w-[15vw]  p-5 flex flex-col justify-between ">
       <div>
         <div className="text-2xl font-semibold">Espaze</div>
-        <div className="space-y-1 mt-5">
+        <div className="space-y-3 mt-10">
           {sidebarRoutes.map((route, index) => (
             <div key={index}>
               <Link
                 to={route.path}
-                className={`text-lg flex items-center justify-start px-3 py-1 rounded-md ${
-                  location.pathname.includes(route.path) ? "bg-black text-white" : "text-black"
+                className={`text-[16px] font-medium flex items-center justify-start px-2 py-2 rounded-lg ${
+                  location.pathname.includes(route.path) ? "bg-black text-white" : "text-zinc-500"
                 }`}
               >
                 {<route.icon />}
