@@ -25,6 +25,11 @@ function ProductTable({ products }) {
     setDeleteProductDetails(data);
     setOpenDeleteModal(true);
   };
+  const handleViewEdit =()=>{
+    setViewProduct(false);
+    setEditProductDetails(productDetails);
+    setOpenUpdateProduct(true)
+  }
 
   return (
     <>
@@ -151,6 +156,7 @@ function ProductTable({ products }) {
         isOpen={openViewProduct}
         onClose={() => setViewProduct(false)}
         data={productDetails}
+        handleEdit={handleViewEdit}
       />
       <EditModalComponent
         isOpen={openUpdateProduct}
