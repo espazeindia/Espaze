@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Tune, FileDownload, FileUpload, DeleteOutline, Add } from "@mui/icons-material";
 import { Checkbox, Table } from "@mui/joy";
-import { TableCell, TableHead, TableRow,  TableContainer ,TablePagination} from "@mui/material";
+import { TableCell, TableHead, TableRow, TableContainer, TablePagination } from "@mui/material";
 import ProductTable from "../components/table/ProductTable";
 import AddProductDetails from "../components/modal/AddProductModal";
 
@@ -31,51 +31,68 @@ function Products() {
 
   const products = [
     {
-      id:1,
-      name: "Apple",
-      category: "Fruits",
-      subCategory: "Fresh Fruits",
-      productCode: "APL123",
-      expiryDate: "2025-06-20",
-      quantity: 0,
-      manufacturingDate: "2025-03-01",
-      price: 100,
-      status: "Available",
-      details: "Red Apple, organic",
-      published: true,
-      actions: "Edit | Delete",
+      id: 1,
+      name: "Apple iPhone 14 Pro Max",
+      category_id: { name: "Electronics" },
+      subCategory_id: { name: "Mobiles" },
+      code: "IPH14PM",
+      expiryDate: "2026-12-31",
+      manufacturingDate: "2024-01-15",
+      quantity: 5,
+      price: 129999,
+      status: "show",
     },
     {
-      id:2,
-      name: "Milk",
-      category: "Dairy",
-      subCategory: "Milk Products",
-      productCode: "MLK456",
-      expiryDate: "2025-03-25",
-      quantity: 100,
-      manufacturingDate: "2025-03-10",
-      price: 50,
-      status: "Available",
-      details: "Full cream milk",
-      published: true,
-      actions: "Edit | Delete",
+      id: 2,
+      name: "Samsung Galaxy S23 Ultra",
+      category_id: { name: "Electronics" },
+      subCategory_id: { name: "Mobiles" },
+      code: "S23ULTRA",
+      expiryDate: "2026-10-15",
+      manufacturingDate: "2024-02-01",
+      quantity: 0, // Sold out
+      price: 124999,
+      status: "hide",
     },
     {
-      id:3,
-      name: "Bread",
-      category: "Bakery",
-      subCategory: "Baked Goods",
-      productCode: "BRD789",
-      expiryDate: "2025-03-15",
-      quantity: 30,
-      manufacturingDate: "2025-03-05",
-      price: 40,
-      status: "Out of Stock",
-      details: "Whole wheat bread",
-      published: false,
-      actions: "Edit | Delete",
+      id: 3,
+      name: "Sony WH-1000XM5 Headphones",
+      category_id: { name: "Electronics" },
+      subCategory_id: { name: "Audio" },
+      code: "SONYXM5",
+      expiryDate: "2027-05-20",
+      manufacturingDate: "2024-03-10",
+      quantity: 8,
+      price: 29999,
+      status: "show",
+    },
+    {
+      id: 4,
+      name: "Nike Air Jordan 1 Retro",
+      category_id: { name: "Clothing" },
+      subCategory_id: { name: "Footwear" },
+      code: "AJ1RETRO",
+      expiryDate: "2025-12-01",
+      manufacturingDate: "2023-12-20",
+      quantity: 15,
+      price: 14999,
+      status: "show",
+    },
+    {
+      id: 5,
+      name: "Dell XPS 15 Laptop",
+      category_id: { name: "Electronics" },
+      subCategory_id: { name: "Laptops" },
+      code: "XPS159510",
+      expiryDate: "2028-08-31",
+      manufacturingDate: "2024-06-05",
+      quantity: 3,
+      price: 189999,
+      status: "hide",
     },
   ];
+  
+  
 
   return (
     <div className="w-full h-full p-5 bg-gray-100">
@@ -114,9 +131,12 @@ function Products() {
               <DeleteOutline />
               Delete
             </button>
-            <button onClick={()=>{setOpenAddProduct(true)}} className="border-green-700 border-y border-r
-             text-green-700 transition-all duration-700 flex items-center px-3 py-2  
-             font-semibold rounded-e-lg hover:cursor-pointer shadow-green-700 hover:shadow-sm">
+            <button
+              onClick={() => {
+                setOpenAddProduct(true);
+              }}
+              className="border-green-500 border-y border-r text-green-500 transition-all duration-700 flex items-center px-3 py-2  font-semibold rounded-e-lg hover:cursor-pointer shadow-green-500 hover:shadow-md"
+            >
               <Add />
               Add Product
             </button>
@@ -130,24 +150,48 @@ function Products() {
                   <TableCell className="w-10 text-white">
                     <Checkbox type="checkbox" size="sm" className="relative top-[3px] left-2" />
                   </TableCell>
-                  <TableCell className="w-40 text-white">Product Name</TableCell>
-                  <TableCell className="w-40 text-white">Category</TableCell>
-                  <TableCell className="w-40 text-white">Sub Category</TableCell>
-                  <TableCell className="w-40 text-white">Product Code</TableCell>
-                  <TableCell className="w-40 text-white">Expiry Date</TableCell>
-                  <TableCell className="w-40 text-white">Quantity</TableCell>
-                  <TableCell className="w-40 text-white">Manufacturing Date</TableCell>
-                  <TableCell className="w-40 text-white">Price</TableCell>
-                  <TableCell className="w-40 text-white">Status</TableCell>
-                  <TableCell className="text-center w-40 text-white">Published</TableCell>
-                  <TableCell className="text-right w-40 text-white">Actions</TableCell>
+                  <TableCell className="w-40 text-white">
+                    <div className=" text-center">Product Name</div>
+                  </TableCell>
+                  <TableCell className="w-40 text-white">
+                    <div className=" text-center">Category</div>
+                  </TableCell>
+                  <TableCell className="w-40 text-white">
+                    <div className=" text-center">Sub Category</div>
+                  </TableCell>
+                  <TableCell className="w-40 text-white">
+                    <div className=" text-center">Product Code</div>
+                  </TableCell>
+                  <TableCell className="w-40 text-white">
+                    <div className=" text-center">Expiry Date</div>
+                  </TableCell>
+                  <TableCell className="w-40 text-white">
+                    <div className=" text-center">Quantity</div>
+                  </TableCell>
+                  <TableCell className="w-40 text-white">
+                    <div className=" text-center">Manufacturing Date</div>
+                  </TableCell>
+                  <TableCell className="w-40 text-white">
+                    <div className=" text-center">Price</div>
+                  </TableCell>
+                  <TableCell className="w-30 text-white">
+                    <div className=" text-center">Status</div>
+                  </TableCell>
+                  <TableCell className="w-30 text-white">
+                    <div className=" text-center">Published</div>
+                  </TableCell>
+                  <TableCell className=" w-30 text-white">
+                    <div className=" text-center">Actions</div>
+                  </TableCell>
                 </TableRow>
               </TableHead>
-              <ProductTable products={products.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}/>
+              <ProductTable
+                products={products.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)}
+              />
             </Table>
           </TableContainer>
           <TablePagination
-            rowsPerPageOptions={[10, 20,30]}
+            rowsPerPageOptions={[10, 20, 30]}
             component="div"
             count={products.length}
             rowsPerPage={rowsPerPage}
@@ -157,7 +201,7 @@ function Products() {
           />
         </div>
       </div>
-      <AddProductDetails isOpen={openAddProduct} onClose={()=>setOpenAddProduct(false)}/>
+      <AddProductDetails isOpen={openAddProduct} onClose={() => setOpenAddProduct(false)} />
     </div>
   );
 }
