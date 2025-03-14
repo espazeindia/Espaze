@@ -28,7 +28,7 @@ function ProductTable({ products }) {
 
   return (
     <>
-      <TableBody className="bg-gray-50 text-black">
+      <TableBody className="bg-gray-50 text-black===">
         {products?.map((product, i) => (
           <TableRow key={i + 1}>
             <TableCell>
