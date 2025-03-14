@@ -12,17 +12,33 @@ import {
   Textarea,
 } from "@mui/joy";
 
-function AddProductDetails({ isOpen, onClose }) {
-  const [formData, setFormData] = useState({
-    productName: "",
-    productDescription: "",
-    category: "",
-    subCategory: "",
-    code: "",
-    price: 0,
-    manufacturingDate: "",
-    expiryDate: "",
-  });
+function UpdateProductModal({ isOpen, onClose , data }) {
+    const [formData, setFormData] = useState({
+        productName: "",
+        productDescription: "",
+        category: "",
+        subCategory: "",
+        code: "",
+        price: "",
+        manufacturingDate: "",
+        expiryDate: "",
+      });
+    
+      // Update formData when `data` changes
+      useEffect(() => {
+        if (data) {
+          setFormData({
+            productName: data.name || "",
+            productDescription: data.description || "",
+            category: data.category_id?.name || "",
+            subCategory: data.subCategory_id?.name || "",
+            code: data.code || "",
+            price: data.price || "",
+            manufacturingDate: data.manufacturingDate || "",
+            expiryDate: data.expiryDate || "",
+          });
+        }
+      }, [data]);
 
   const categories = {
     "fruits-vegetables": ["Fruits", "Vegetables", "Organic Produce"],
@@ -214,4 +230,4 @@ function AddProductDetails({ isOpen, onClose }) {
   );
 }
 
-export default AddProductDetails;
+export default UpdateProductModal;

@@ -1,16 +1,22 @@
-import { Checkbox } from "@mui/joy";
+import { Checkbox, Switch } from "@mui/joy";
 import { TableBody, TableCell, TableRow } from "@mui/material";
 import React, { useState } from "react";
-import ModalComponent from "../modal/ViewProductModal";
-import ZoomInIcon from '@mui/icons-material/ZoomIn';
+import ViewModalComponent from "../modal/ViewProductModal";
+import EditModalComponent from "../modal/UpdateProductModal";
+import { Visibility, Edit, Delete } from "@mui/icons-material";
 
 function ProductTable({ products }) {
   const [openViewProduct, setViewProduct] = useState(false);
   const [productDetails, setProductDetails] = useState({});
-  const handleProductView = (id) => {
-    const details = products.filter((product) => product.id === id);
-    setProductDetails(details[0]);
+  const [openUpdateProduct, setOpenUpdateProduct] = useState(false);
+    const [editProductDetails, setEditProductDetails] = useState({});
+  const handleProductView = (data) => {
+    setProductDetails(data);
     setViewProduct(true);
+  };
+  const handleProductEdit = (data) => {
+    setEditProductDetails(data);
+    setOpenUpdateProduct(true);
   };
   return (
     <>
@@ -30,85 +36,99 @@ function ProductTable({ products }) {
             </TableCell>
 
             <TableCell>
-              <div className="flex items-center">
-                <div>
+              
                   <h2
-                    className={`text-sm font-medium ${
+                    className={`text-sm text-center font-medium ${
                       product?.name.length > 30 ? "wrap-long-title" : ""
                     }`}
                   >
                     {product?.name?.substring(0, 28)}
                   </h2>
-                </div>
-              </div>
+               
             </TableCell>
 
             <TableCell>
-              <span className="text-sm">{product?.category_id?.name}</span>
+              <div className="text-center text-sm">{product?.category_id?.name}</div>
             </TableCell>
 
             <TableCell>
-              <span className="text-sm">{product?.subCategory_id?.name}</span>
+              <div className="text-center text-sm">{product?.subCategory_id?.name}</div>
             </TableCell>
 
             <TableCell>
-              <span className="text-sm font-semibold">{product?.code}</span>
+              <div className="text-sm text-center font-semibold">{product?.code}</div>
             </TableCell>
 
             <TableCell>
-              <span className="text-sm">
+              <div className="text-sm text-center">
                 {new Date(product?.expiryDate).toLocaleDateString("en-GB", {
                   day: "2-digit",
                   month: "long",
                   year: "numeric",
                 })}
-              </span>
+              </div>
             </TableCell>
 
             <TableCell>
-              <span className="text-sm">{product?.quantity}</span>
+              <div className="text-sm text-center">{product?.quantity}</div>
             </TableCell>
 
             <TableCell>
-              <span className="text-sm">
+              <div className="text-sm text-center">
                 {new Date(product?.manufacturingDate).toLocaleDateString("en-GB", {
                   day: "2-digit",
                   month: "long",
                   year: "numeric",
                 })}
-              </span>
+              </div>
             </TableCell>
 
             <TableCell>
-              <span className="text-sm">{product?.price}</span>
+              <div className="text-sm text-center">₹ {product?.price}</div>
             </TableCell>
 
             <TableCell>
               {product.quantity > 0 ? (
-                <div className="border border-green-500 text-xs text-green-500 px-2 py-1 rounded-full w-fit">
+                <div className="border border-green-500 mx-auto text-xs text-green-500 px-2 py-1 rounded-full w-fit">
                   In Stock
                 </div>
               ) : (
-                <div className="border border-red-500 text-xs text-red-500 px-2 py-1 rounded-full w-fit">
+                <div className="border border-red-500 mx-auto text-xs text-red-500 px-2 py-1 rounded-full w-fit">
                   Sold Out
                 </div>
               )}
             </TableCell>
-            
-            <TableCell className="text-center">
-              toggle
-              {/* <ShowHideButton id={product._id} status={product.status} /> */}
-              {/* {product.status} */}
+
+            <TableCell>
+              <div className="text-center">
+              <Switch
+                checked={product.status==="show"}
+                sx={{
+                  "--Switch-trackRadius": "13px",
+                  "--Switch-trackWidth": "40px",
+                  "--Switch-trackHeight": "19px",
+                  "--Switch-thumbSize": "10px",
+                }}
+              />
+              </div>
             </TableCell>
-            <TableCell className="flex">
-            <div className="inline"
+            <TableCell>
+              <div className="flex justify-center">
+              <div
+                className=" hover:cursor-pointer "
                 onClick={() => {
-                  handleProductView(product.id);
+                  handleProductView(product);
                 }}
               >
-                <ZoomInIcon/>
+                <Visibility fontSize="small" />
               </div>
-              <div className="inline">Edit</div>
+              <div className="inline ml-2 hover:cursor-pointer" onClick={()=>{handleProductEdit(product)}}>
+                <Edit fontSize="small" />
+              </div>
+              <div className="inline ml-2 hover:cursor-pointer">
+                <Delete fontSize="small" />
+              </div>
+              </div>
               {/* <EditDeleteButton
                 id={product._id}
                 product={product}
@@ -121,10 +141,15 @@ function ProductTable({ products }) {
           </TableRow>
         ))}
       </TableBody>
-      <ModalComponent
+      <ViewModalComponent
         isOpen={openViewProduct}
         onClose={() => setViewProduct(false)}
         data={productDetails}
+      />
+      <EditModalComponent
+        isOpen={openUpdateProduct}
+        onClose={() => setOpenUpdateProduct(false)}
+        data={editProductDetails}
       />
     </>
   );
