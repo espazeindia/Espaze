@@ -63,7 +63,7 @@ function AddProductDetails({ isOpen, onClose }) {
   };
 
   return (
-    <Modal open={isOpen} onClose={onClose}>
+    <Modal open={isOpen} onClose={onClose} >
       <ModalDialog size="lg">
         <ModalClose style={{ zIndex: "10" }} />
         <DialogTitle>Add Product</DialogTitle>
@@ -204,7 +204,7 @@ function AddProductDetails({ isOpen, onClose }) {
                 type="submit"
                 className="border-green-500 border text-green-500 px-6 py-2 transition-all duration-500 hover:bg-green-500 hover:text-white rounded-lg hover:cursor-pointer"
               >
-                Submit
+                Add
               </button>
             </div>
           </form>

@@ -24,31 +24,30 @@ function UpdateProductModal({ isOpen, onClose , data }) {
         expiryDate: "",
       });
     
-      // Update formData when `data` changes
       useEffect(() => {
-        if (data) {
+        if (isOpen && data) {
           setFormData({
-            productName: data.name || "",
-            productDescription: data.description || "",
-            category: data.category_id?.name || "",
-            subCategory: data.subCategory_id?.name || "",
-            code: data.code || "",
-            price: data.price || "",
-            manufacturingDate: data.manufacturingDate || "",
-            expiryDate: data.expiryDate || "",
+            productName: data?.name || "",
+            productDescription: data?.description || "",
+            category: data?.category_id?.name || "",
+            subCategory: data?.subCategory_id?.name || "",
+            code: data?.code || "",
+            price: data?.price || "",
+            manufacturingDate: data?.manufacturingDate?.split("T")[0] || "",
+            expiryDate: data?.expiryDate?.split("T")[0] || "",
           });
         }
-      }, [data]);
+      }, [isOpen, data]);
 
   const categories = {
     "fruits-vegetables": ["Fruits", "Vegetables", "Organic Produce"],
-    clothes: ["Men", "Women", "Kids", "Accessories"],
-    electronics: ["Mobiles", "Laptops", "TVs", "Cameras"],
+    "clothes": ["Men", "Women", "Kids", "Accessories"],
+    "electronics": ["Mobiles", "Laptops", "TVs", "Cameras"],
     "home-appliances": ["Kitchen Appliances", "Furniture", "Decor"],
     "beauty-personal-care": ["Skincare", "Haircare", "Makeup"],
     "toys-games": ["Board Games", "Outdoor Toys", "Video Games"],
     "books-stationery": ["Fiction", "Non-fiction", "Office Supplies"],
-    grocery: ["Dairy", "Snacks", "Beverages"],
+    "grocery": ["Dairy", "Snacks", "Beverages"],
   };
 
   const handleChange = (e) => {
@@ -82,7 +81,7 @@ function UpdateProductModal({ isOpen, onClose , data }) {
     <Modal open={isOpen} onClose={onClose}>
       <ModalDialog size="lg">
         <ModalClose style={{ zIndex: "10" }} />
-        <DialogTitle>Add Product</DialogTitle>
+        <DialogTitle>Update Product</DialogTitle>
         <DialogContent className="h-[50vh] w-[70vw] overflow-scroll sideBarNone">
           <form>
             <div className="grid grid-cols-2 gap-5">
@@ -220,7 +219,7 @@ function UpdateProductModal({ isOpen, onClose , data }) {
                 type="submit"
                 className="border-green-500 border text-green-500 px-6 py-2 transition-all duration-500 hover:bg-green-500 hover:text-white rounded-lg hover:cursor-pointer"
               >
-                Submit
+                Update
               </button>
             </div>
           </form>
