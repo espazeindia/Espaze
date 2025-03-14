@@ -99,8 +99,8 @@ function Products() {
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-semibold text-gray-700 transition-all duration-1000 hover:scale-[110%]">Products</h1>
         <div className="flex">
-          <button className="border-green-700 border transition-all duration-500 flex items-center px-6 py-2
-           text-green-700 font-semibold rounded-s-lg hover:cursor-pointer shadow-green-600 hover:shadow-sm">
+          <button className="border-green-600 border transition-all duration-500 flex items-center px-6 py-2
+           text-green-600 font-semibold rounded-s-lg hover:cursor-pointer shadow-green-600 hover:shadow-sm">
             <FileDownload /> Import
           </button>
           <button className="border-y border-r border-gray-500 text-gray-500 transition-all 
@@ -135,14 +135,16 @@ function Products() {
               onClick={() => {
                 setOpenAddProduct(true);
               }}
-              className="border-green-500 border-y border-r text-green-500 transition-all duration-700 flex items-center px-3 py-2  font-semibold rounded-e-lg hover:cursor-pointer shadow-green-500 hover:shadow-md"
+              className="border-green-600 border-y border-r text-green-600 
+              transition-all duration-700 flex items-center px-3 py-2  font-semibold rounded-e-lg 
+              hover:cursor-pointer shadow-green-600 hover:shadow-sm"
             >
               <Add />
               Add Product
             </button>
           </div>
         </div>
-        <div className="overflow-scroll sideBarNone mt-5">
+        <div className="overflow-scroll sideBarNone mt-5 ">
           <TableContainer className=" rounded-lg sideBarNone">
             <Table>
               <TableHead>
@@ -151,37 +153,37 @@ function Products() {
                     <Checkbox type="checkbox" size="sm" className="relative top-[3px] left-2" />
                   </TableCell>
                   <TableCell className="w-40 text-white">
-                    <div className=" text-center">Product Name</div>
+                    <div className=" text-center text-[#6b7280]">Product Name</div>
                   </TableCell>
                   <TableCell className="w-40 text-white">
-                    <div className=" text-center">Category</div>
+                    <div className=" text-center text-[#6b7280]">Category</div>
                   </TableCell>
                   <TableCell className="w-40 text-white">
-                    <div className=" text-center">Sub Category</div>
+                    <div className=" text-center text-[#6b7280]">Sub Category</div>
                   </TableCell>
                   <TableCell className="w-40 text-white">
-                    <div className=" text-center">Product Code</div>
+                    <div className=" text-center text-[#6b7280]">Product Code</div>
                   </TableCell>
                   <TableCell className="w-40 text-white">
-                    <div className=" text-center">Expiry Date</div>
+                    <div className=" text-center text-[#6b7280]">Expiry Date</div>
                   </TableCell>
                   <TableCell className="w-40 text-white">
-                    <div className=" text-center">Quantity</div>
+                    <div className=" text-center text-[#6b7280]">Quantity</div>
                   </TableCell>
                   <TableCell className="w-40 text-white">
-                    <div className=" text-center">Manufacturing Date</div>
+                    <div className=" text-center text-[#6b7280]">Manufacturing Date</div>
                   </TableCell>
                   <TableCell className="w-40 text-white">
-                    <div className=" text-center">Price</div>
+                    <div className=" text-center text-[#6b7280]">Price</div>
                   </TableCell>
                   <TableCell className="w-30 text-white">
-                    <div className=" text-center">Status</div>
+                    <div className=" text-center text-[#6b7280]">Status</div>
                   </TableCell>
                   <TableCell className="w-30 text-white">
-                    <div className=" text-center">Published</div>
+                    <div className=" text-center text-[#6b7280]">Published</div>
                   </TableCell>
                   <TableCell className=" w-30 text-white">
-                    <div className=" text-center">Actions</div>
+                    <div className=" text-center text-[#6b7280]">Actions</div>
                   </TableCell>
                 </TableRow>
               </TableHead>

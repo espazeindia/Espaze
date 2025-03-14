@@ -18,11 +18,11 @@ function ViewProductModalComponent({isOpen,onClose,data}) {
                   <p className="text-sm text-gray-500 pr-4">
                     Status:{" "}
                     {data.status === "show" ? (
-                      <span className="text-green-400">
+                      <span className="text-green-500">
                         Product is visible
                       </span>
                     ) : (
-                        <span className="text-red-400">
+                        <span className="text-red-500">
                         Product is hidden
                       </span>
                     )}
