@@ -21,10 +21,10 @@ function Sidebar() {
       {/* Logo and Title */}
       <div>
         <div className="px-3">
-        <div className="flex flex-col items-center justify-center border-b-[1px] border-gray-700 pb-3">
-          <img src={Logo} alt="logo" className="w-16 h-10" />
-          <h1 className="text-3xl font-semibold w-full mt-2 text-center">Espaze</h1>
-          <div className="text-xs text-gray-400">Product Managment Dashboard</div>
+        <div className="flex items-center justify-center border-b-[1px] border-gray-700 pb-5">
+          <img src={Logo} alt="logo" className="w-30 h-14 relative right-3" />
+          {/* <h1 className="text-3xl font-normal w-full  mt-4 ">spaze</h1>
+          <div className="text-xs text-gray-400">Product Managment Dashboard</div> */}
         </div>
         </div>
       
@@ -35,7 +35,7 @@ function Sidebar() {
             <Link
             key={index}
             to={route.path}
-            className={`flex items-center text-lg px-4 py-1 font-medium transition-all duration-1000 ${
+            className={`flex items-center text-base px-6 py-3 font-semibold transition-all duration-1000 ${
               location.pathname.includes(route.path)
                 ? "bg-gradient-to-r from-white/30 to-white/10 text-white backdrop-blur-md"
                 : "text-gray-500 hover:bg-gray-700/50"
@@ -49,18 +49,18 @@ function Sidebar() {
       </div>
 
       {/* Help & Logout Section */}
-      <div className="space-y-3 px-3">
+      <div className="space-y-1 px-3">
         <div className="border-t border-gray-700 pt-3">
           <Link
             to="/help"
-            className="flex items-center px-4 py-3 rounded-md text-gray-400 hover:bg-gray-700/40 hover:text-white transition-all"
+            className="flex items-center px-4 py-2 rounded-md text-gray-400 hover:text-white transition-all"
           >
             <HelpOutlineIcon className="mr-3" />
             Help & Center
           </Link>
           <Link
             to="/settings"
-            className="flex items-center px-4 py-3 rounded-md text-gray-400 hover:bg-gray-700/40 hover:text-white transition-all"
+            className="flex items-center px-4 py-2 rounded-md text-gray-400 hover:text-white transition-all"
           >
             <SettingsIcon className="mr-3" />
             Settings
@@ -69,7 +69,8 @@ function Sidebar() {
 
         <button
           onClick={handleLogOut}
-          className="flex items-center w-full px-4 py-3 text-red-500 border border-red-500 rounded-md duration-1000 hover:bg-red-50 hover:cursor-pointer transition-all"
+          className="flex items-center w-full px-4 py-3 text-red-500 rounded-md duration-1000
+           hover:bg-red-500 hover:text-white hover:cursor-pointer transition-all"
         >
           <LogoutOutlinedIcon className="mr-3" />
           Log Out

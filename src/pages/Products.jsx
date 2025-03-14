@@ -80,12 +80,14 @@ function Products() {
   return (
     <div className="w-full h-full p-5 bg-gray-100">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-semibold text-gray-700 transition-all duration-1000 hover:scale-[110%]">Products</h1>
+        <h1 className="text-2xl font-semibold text-gray-700 transition-all duration-1000 hover:scale-[110%]">Products</h1>
         <div className="flex">
-          <button className="border-green-500 border transition-all duration-500 flex items-center px-6 py-2 text-green-500 font-semibold rounded-s-lg hover:cursor-pointer shadow-green-400 hover:shadow-md">
+          <button className="border-green-700 border transition-all duration-500 flex items-center px-6 py-2
+           text-green-700 font-semibold rounded-s-lg hover:cursor-pointer shadow-green-600 hover:shadow-sm">
             <FileDownload /> Import
           </button>
-          <button className="border-y border-r border-gray-600 text-gray-600 transition-all duration-500 flex items-center px-6 py-2 font-semibold rounded-e-lg hover:cursor-pointer shadow-gray-600 hover:shadow-md">
+          <button className="border-y border-r border-gray-500 text-gray-500 transition-all 
+          duration-500 flex items-center px-6 py-2 font-semibold rounded-e-lg hover:cursor-pointer shadow-gray-400 hover:shadow-sm">
             <FileUpload />
             Export
           </button>
@@ -96,19 +98,25 @@ function Products() {
           <div className="flex items-center">
             <input
               type="text"
-              className="bg-gray-100 px-4 py-2 rounded-md w-[55vw] text-black transition-all duration-500 focus:outline-0 placeholder:text-xl focus:shadow-md shadow-gray-600 hover:shadow-sm"
+              className="bg-gray-100 px-4 py-2 rounded-lg w-[55vw]
+               text-black transition-all duration-500 focus:outline-0 placeholder:text-base focus:shadow-sm
+                shadow-gray-600 hover:shadow-sm"
               placeholder="Search Product"
             />
-            <button className="border flex items-center px-4 transition-all duration-500 rounded-full ml-2 py-1 hover:cursor-pointer hover:shadow-md shadow-black">
-              <Tune className="mr-2" /> Filters
+            <button className="border flex items-center px-4 transition-all text-gray-500 border-gray-400
+            duration-500 rounded-lg ml-2 py-1 hover:cursor-pointer hover:shadow-xs shadow-gray-400">
+              <Tune className="mr-2 text-gray-500" /> Filters
             </button>
           </div>
           <div className="flex">
-            <button className="border-red-400 border text-red-400  flex items-center px-3 py-2 transition-all duration-500 hover:shadow-md shadow-red-400 font-semibold rounded-s-lg hover:cursor-pointer">
+            <button className="border-red-500 border text-red-500  flex items-center px-3 py-2 
+            transition-all duration-500 hover:shadow-sm shadow-red-500 font-semibold rounded-s-lg hover:cursor-pointer">
               <DeleteOutline />
               Delete
             </button>
-            <button onClick={()=>{setOpenAddProduct(true)}} className="border-green-500 border-y border-r text-green-500 transition-all duration-700 flex items-center px-3 py-2  font-semibold rounded-e-lg hover:cursor-pointer shadow-green-500 hover:shadow-md">
+            <button onClick={()=>{setOpenAddProduct(true)}} className="border-green-700 border-y border-r
+             text-green-700 transition-all duration-700 flex items-center px-3 py-2  
+             font-semibold rounded-e-lg hover:cursor-pointer shadow-green-700 hover:shadow-sm">
               <Add />
               Add Product
             </button>
